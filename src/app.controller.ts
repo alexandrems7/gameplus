@@ -1,12 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+/* eslint-disable prettier/prettier */
+import { Controller, Get } from "@nestjs/common";
+import { AppService } from "./app.service";
+import { ApiOperation, ApiTags } from "@nestjs/swagger/dist";
 
+@ApiTags('status')
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @ApiOperation({
+    summary: 'Visualizar status da aplicação'
+  })
+  getAppStatus(): string {
+    return this.appService.getAppStatus();
   }
 }
